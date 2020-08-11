@@ -1,0 +1,22 @@
+#home_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#home_container #search_container{
+    padding: 100px 0;
+}
+#home_container #search_container .title{
+    font-weight: 300;
+}
+#home_container #search_container form input{
+    height: 28px;
+    padding: 4px;;
+    width: 300px;
+}
+#home_container #search_container form button{
+    padding: 10px 27px;
+}
+#home_container #search-logo img{
+    max-width: 100px;
+}
