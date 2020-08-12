@@ -18,21 +18,21 @@ export class RegisterComponent implements OnInit {
     private router: Router) {
   }
   form = this.fb.group({
-    name: ['Shubham', [
+    name: ['', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(30),
       Validators.pattern(/^[A-Z a-z 0-9.]+$/)
     ]],
-    email: ['soni@nd.com', [
+    email: ['', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|in|net)$")
     ]],
-    password: ['Pass@123', [
+    password: ['', [
       Validators.required,
       Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,30}$")
     ]],
-    role: ['employee', [
+    role: ['', [
       Validators.required,
       Validators.pattern(/^(employee|manager)$/)
     ]]

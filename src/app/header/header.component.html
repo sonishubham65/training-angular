@@ -6,11 +6,25 @@
         <ul id="menu">
             <li><a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']">Home</a>
             </li>
-            <li><a routerLinkActive="active" [routerLink]="['./account/login']">Login</a></li>
-            <li><a routerLinkActive="active" [routerLink]="['./account/register']">Register</a></li>
-            <li><a>Positions</a></li>
-            <li><a>Profile</a></li>
-            <li><a>Logout</a></li>
+            <ng-container *ngIf="!profileService.user">
+                <li><a routerLinkActive="active" [routerLink]="['./account/login']">Login</a></li>
+                <li><a routerLinkActive="active" [routerLink]="['./account/register']">Register</a></li>
+            </ng-container>
+            <ng-container *ngIf="profileService.user">
+                <li><a>Positions</a></li>
+                <ng-container *ngIf="profileService.user.role=='employee'">
+                    <li><a>Resume</a></li>
+                </ng-container>
+                <ng-container *ngIf="profileService.user.role=='manager'">
+                    <li><a>Posts</a></li>
+                </ng-container>
+                <li><a [routerLink]="['#']" (click)="logout()">Logout</a></li>
+            </ng-container>
+
         </ul>
+
+        <div id="howdy" *ngIf="profileService.user">
+            Hello, {{profileService.user.name}}
+        </div>
     </div>
 </header>

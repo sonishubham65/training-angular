@@ -12,6 +12,10 @@ header #header-logo {
 header #header-logo img{
     max-height: 25px;
 }
+header #header-menu{
+    display: flex;
+    justify-content: end;
+}
 header #header-menu #menu{
     list-style: none;
 }
@@ -26,4 +30,8 @@ header #header-menu #menu li a{
 header #header-menu #menu li a.active{
     color: #000;
     font-weight: 500;
+}
+
+header #header-menu #howdy{
+    margin-left: 20px;
 }

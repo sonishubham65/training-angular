@@ -31,4 +31,10 @@ export class ProfileService {
     localStorage.setItem('token', data);
     this.tokenData = data;
   }
+  logout() {
+    this.token = undefined;
+    this.user = undefined;
+    localStorage.removeItem('token');
+    localStorage.removeItem('profile');
+  }
 }
