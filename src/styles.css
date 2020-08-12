@@ -5,9 +5,23 @@
 }
 body {
     background: #f8fafb;
-    font-family: Poppins, sans-serif;
     padding: 0;
     margin: 0;
     font-size: 13px;
     padding-bottom: 50px;
+}
+.error-container{
+    font-size: 11px;
+    color: red;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.toast-container .ngx-toastr{
+    padding: 10px 15px 10px 50px;
+}
+.mat-spinner{
+    display: inline-block !important;
+}
+.error-container p {
+    margin: 0;
 }

@@ -1,0 +1,42 @@
+<div id="middleContainer">
+    <h3>Login</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" id="form">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input type="text" formControlName="email" />
+                        <div class="error-container" *ngIf="!form.get('email').pristine">
+                            <p *ngIf="form.get('email').hasError('required')">"Email" is required.</p>
+                            <p *ngIf="form.get('email').hasError('pattern')">"Email" must be a valid email and ending
+                                one of ['com', 'net', 'in'].</p>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <input type="password" formControlName="password" />
+                        <div class="error-container" *ngIf="!form.get('password').pristine">
+                            <p *ngIf="form.get('password').hasError('required')">"Password" is required.</p>
+                            <p *ngIf="form.get('password').hasError('pattern')">"Password" should contain at least a
+                                capital letter, a small letter, a number and a special charcter and 8 charcter long.</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button [disabled]="(form.status=='INVALID' || isLoading)" type="submit">Submit <mat-spinner
+                                *ngIf="isLoading" [diameter]="14">
+                            </mat-spinner></button>
+                        &nbsp;
+                        <button type="reset">Reset</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
