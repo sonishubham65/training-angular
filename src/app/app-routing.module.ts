@@ -6,6 +6,9 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [{
   path: '',
   component: HomeComponent
+}, {
+  path: 'account',
+  loadChildren: () => import('./account/account.module').then(module => module.AccountModule)
 }];
 
 @NgModule({

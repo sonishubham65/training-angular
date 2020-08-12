@@ -4,8 +4,10 @@
     </div>
     <div id="header-menu">
         <ul id="menu">
-            <li><a>Home</a></li>
-            <li><a>Login</a></li>
+            <li><a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']">Home</a>
+            </li>
+            <li><a routerLinkActive="active" [routerLink]="['./account/login']">Login</a></li>
+            <li><a routerLinkActive="active" [routerLink]="['./account/register']">Register</a></li>
             <li><a>Positions</a></li>
             <li><a>Profile</a></li>
             <li><a>Logout</a></li>

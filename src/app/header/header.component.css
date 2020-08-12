@@ -19,3 +19,11 @@ header #header-menu #menu li{
     display: inline-block;
     margin: 0 5px;
 }
+header #header-menu #menu li a{
+    color: #666;
+    text-decoration: none;
+}
+header #header-menu #menu li a.active{
+    color: #000;
+    font-weight: 500;
+}

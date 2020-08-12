@@ -1,0 +1,73 @@
+<div id="middleContainer">
+    <h3>Register</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" id="form">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>
+                        <input type="text" formControlName="name" />
+                        <div class="error-container" *ngIf="!form.get('name').pristine">
+                            <p *ngIf="form.get('name').hasError('required')">"Name" is required.</p>
+                            <p *ngIf="form.get('name').hasError('pattern')">"Name" should contain letters and number
+                                only.</p>
+                            <p *ngIf="form.get('name').hasError('minlength')">"Name" length must be at least 3
+                                characters long.</p>
+                            <p *ngIf="form.get('name').hasError('maxlength')">"Name" length must be less than or equal
+                                to 30 characters long.</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input type="text" formControlName="email" />
+                        <div class="error-container" *ngIf="!form.get('email').pristine">
+                            <p *ngIf="form.get('email').hasError('required')">"Email" is required.</p>
+                            <p *ngIf="form.get('email').hasError('pattern')">"Email" must be a valid email and ending
+                                one of ['com', 'net', 'in'].</p>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <input type="password" formControlName="password" />
+                        <div class="error-container" *ngIf="!form.get('password').pristine">
+                            <p *ngIf="form.get('password').hasError('required')">"Password" is required.</p>
+                            <p *ngIf="form.get('password').hasError('pattern')">"Password" should contain at least a
+                                capital letter, a small letter, a number and a special charcter and 8 charcter long.</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Role</td>
+                    <td>
+                        <select formControlName="role">
+                            <option value="">Select role</option>
+                            <option *ngFor="let role of [['manager','Manager'],['employee','Employee']]"
+                                [value]="role[0]">
+                                {{role[1]}}</option>
+                        </select>
+                        <div class="error-container" *ngIf="!form.get('role').pristine">
+                            <p *ngIf="form.get('role').hasError('required')">"Role" is required.</p>
+                            <p *ngIf="form.get('role').hasError('pattern')">"Role" must be one of
+                                ['Employee','Manager'].</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button [disabled]="(form.status=='INVALID' || isLoading)" type="submit">Submit <mat-spinner
+                                *ngIf="isLoading" [diameter]="14">
+                            </mat-spinner></button>
+                        &nbsp;
+                        <button type="reset">Reset</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

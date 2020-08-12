@@ -1,0 +1,7 @@
+#form table td{
+    padding: 2px 0;
+    vertical-align: top;
+}
+#form table button{
+    padding: 0px 5px;
+}
