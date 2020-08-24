@@ -1,0 +1,19 @@
+#lists #list_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#lists #list_header .title{
+    font-size: 16px;
+    font-weight: 500;
+}
+#lists #list_header .create button{
+    padding: 2px 5px;
+}
+#lists table{
+    width: 100%;
+    margin-top: 15px;
+}
+#lists table thead td{
+    font-weight: 600;
+}
