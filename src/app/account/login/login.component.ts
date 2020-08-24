@@ -21,11 +21,11 @@ export class LoginComponent implements OnInit {
     private profileService: ProfileService,) {
   }
   form = this.fb.group({
-    email: ['employee@nagarro.com', [
+    email: ['', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|in|net)$")
     ]],
-    password: ['Pass@123', [
+    password: ['', [
       Validators.required,
       Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,30}$")
     ]]
@@ -50,7 +50,9 @@ export class LoginComponent implements OnInit {
             this.form.reset();
             this.profileService.user = res['data'];
             this.profileService.token = res['token'];
-            //this.router.navigate([''])
+            if (res['data'].role === 'manager') {
+              this.router.navigate(['/post'])
+            }
           },
           error => {
             console.log(error)
