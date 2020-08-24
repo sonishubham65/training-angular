@@ -8,15 +8,12 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
   register(userData) {
-    return this.http.post("user/signup", userData, {
-      headers: new HttpHeaders({ 'Content-type': 'application/json' }),
+    return this.http.post(`user/signup`, userData, {
       observe: "response"
     })
   }
   login(userData) {
-    return this.http.post("user/login", userData, {
-      headers: new HttpHeaders({ 'Content-type': 'application/json' }),
-      observe: "body"
+    return this.http.post(`user/login`, userData, {
     })
   }
 }
