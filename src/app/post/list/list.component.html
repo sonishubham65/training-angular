@@ -16,9 +16,13 @@
     </div>
     <table mat-table [dataSource]="dataSource">
 
+        <ng-container matColumnDef="_id">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+        </ng-container>
         <ng-container matColumnDef="project_name">
             <th mat-header-cell *matHeaderCellDef> Project name. </th>
-            <td mat-cell *matCellDef="let element"> {{element.project_name}} </td>
+            <td mat-cell *matCellDef="let element" > <a [routerLink]="['./edit/',element._id]">{{element.project_name}}</a> </td>
         </ng-container>
 
         <ng-container matColumnDef="client_name">
@@ -43,12 +47,9 @@
             <th mat-header-cell *matHeaderCellDef> Updated at </th>
             <td mat-cell *matCellDef="let element"> {{element.updated_at}} </td>
         </ng-container>
-        <ng-container matColumnDef="_id">
+        <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLink]="['./edit/',element._id]">
-                    edit
-                </mat-icon>
                 <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="delete(element._id)">delete
                 </mat-icon>
             </td>

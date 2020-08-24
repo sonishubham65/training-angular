@@ -8,7 +8,7 @@ import { PostService } from '../post.service'
 export class ListComponent implements OnInit {
 
   constructor(private postService: PostService) { }
-  displayedColumns: string[] = ['project_name', 'client_name', 'role', 'status', 'created_at', '_id'];
+  displayedColumns: string[] = ['project_name', 'client_name', 'role', 'status', 'created_at', 'action'];
   dataSource;
   page = 1;
   total = 0;
