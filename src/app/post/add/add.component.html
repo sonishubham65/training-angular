@@ -1,5 +1,5 @@
 <div id="middleContainer">
-    <h3>Register</h3>
+    <h3>Post Create</h3>
     <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()" id="form">
         <mat-form-field class="form-field">
             <mat-label>Project Name</mat-label>
@@ -57,7 +57,7 @@
         <mat-form-field class="form-field">
             <mat-label>Status</mat-label>
             <mat-select formControlName="status">
-                <mat-option *ngFor="let status of [['open','Open'],['close','Close']]" [value]="status[0]">
+                <mat-option *ngFor="let status of [['open','Open'],['closed','Closed']]" [value]="status[0]">
                   {{status[1]}}
                 </mat-option>
               </mat-select>

@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { PostService } from '../post.service';
-import { MatAutocomplete } from '@angular/material/autocomplete';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { finalize } from 'rxjs/operators';
 @Component({
@@ -12,7 +11,6 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
   form = this.fb.group({
     project_name: ['M30', [
       Validators.required,
@@ -40,7 +38,7 @@ export class AddComponent implements OnInit {
     ]],
     status: ['open', [
       Validators.required,
-      Validators.pattern(/^(open|close)$/)
+      Validators.pattern(/^(open|closed)$/)
     ]]
   })
 
