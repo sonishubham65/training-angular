@@ -11,7 +11,9 @@ export class PostService {
     private profileService: ProfileService
   ) { }
   list(page, filter) {
-    let url = `manager/post/page/${page}`
-    return this.http.get(url)
+    return this.http.get(`manager/post/page/${page}`);
+  }
+  add(data) {
+    return this.http.post(`manager/post/`, data);
   }
 }

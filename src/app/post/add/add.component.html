@@ -1,0 +1,73 @@
+<div id="middleContainer">
+    <h3>Register</h3>
+    <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()" id="form">
+        <mat-form-field class="form-field">
+            <mat-label>Project Name</mat-label>
+            <input matInput placeholder="" formControlName="project_name"/>
+            <mat-error *ngIf="form.get('project_name').hasError('required')">"Project Name" is required.</mat-error>
+            <mat-error *ngIf="form.get('project_name').hasError('pattern')">"Project Name" should contain letters and number only.</mat-error>
+            <mat-error *ngIf="form.get('project_name').hasError('minlength')">"Project Name" length must be at least 3 characters long.</mat-error>
+            <mat-error *ngIf="form.get('project_name').hasError('maxlength')">"Project Name" length must be less than or equal to 30 characters long.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Client Name</mat-label>
+            <input matInput placeholder="" formControlName="client_name"/>
+            <mat-error *ngIf="form.get('client_name').hasError('required')">"Client name" is required..</mat-error>
+            <mat-error *ngIf="form.get('client_name').hasError('minlength')">"Client name" length must be at least 3 characters long.</mat-error>
+            <mat-error *ngIf="form.get('client_name').hasError('maxlength')">"Client name" length must be less than or equal to 30 characters long.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Technologies</mat-label>
+            <mat-chip-list #chipList aria-label="Technologies">
+                <mat-chip *ngFor="let tech of form.get('technologies').value" [selectable]="true"
+                       [removable]="true" (removed)="remove(tech)">
+                    {{tech}}
+                    <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="write a technology"
+                    formControlName="technology"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="true"
+                    (blur)="add(true)"
+                    (matChipInputTokenEnd)="add()"/>
+                    <!-- <mat-error *ngIf="form.get('technologies').value.length==0">"Technologies" are required.</mat-error> -->
+            </mat-chip-list>
+            <mat-error>Technologies must contains at least one input.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+                <mat-option *ngFor="let role of [['trainee','Trainee'],['associate','Associate'],['senior_associate','Senior associate'],['lead','Lead'],['manager','Manager'],['director','Director']]" [value]="role[0]">
+                  {{role[1]}}
+                </mat-option>
+              </mat-select>
+            <mat-error *ngIf="form.get('role').hasError('required')">"Role" is required.</mat-error>
+            <mat-error *ngIf="form.get('role').hasError('pattern')">"Role" must be one of
+                ['Employee','Manager'].</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" placeholder="" rows="9"></textarea>
+            <mat-error *ngIf="form.get('description').hasError('required')">"Description" is required.</mat-error>
+            <mat-error *ngIf="form.get('description').hasError('pattern')">.</mat-error>
+            <mat-error *ngIf="form.get('description').hasError('minlength')">"Description" should contain letters, number and .'-@# ,?*& only.</mat-error>
+            <mat-error *ngIf="form.get('description').hasError('maxlength')">"Description" length must be less than or equal to 1000 characters long.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option *ngFor="let status of [['open','Open'],['close','Close']]" [value]="status[0]">
+                  {{status[1]}}
+                </mat-option>
+              </mat-select>
+            <mat-error *ngIf="form.get('status').hasError('required')">"Status" is required.</mat-error>
+            <mat-error *ngIf="form.get('status').hasError('pattern')">"Status" must be one of
+                ['Open','Close'].</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="(form.status=='INVALID' || isLoading)" type="submit">
+            Submit
+            <mat-spinner *ngIf="isLoading" [diameter]="14"></mat-spinner>
+        </button>
+    </form>
+</div>
