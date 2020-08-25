@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
       Validators.required,
       Validators.minLength(100),
       Validators.maxLength(1000),
-      Validators.pattern(/^[A-Z a-z 0-9.'@# ,?"*&-]+$/)
+      Validators.pattern(/^[A-Z a-z 0-9.'@# ,?"*&\r\t\n-]+$/)
     ]],
     status: ['', [
       Validators.required,
