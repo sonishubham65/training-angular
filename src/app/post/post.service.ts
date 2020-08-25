@@ -7,13 +7,15 @@ import { ProfileService } from '../account/profile.service';
 export class PostService {
 
   constructor(
-    private http: HttpClient,
-    private profileService: ProfileService
+    private http: HttpClient
   ) { }
   list(page, filter) {
     return this.http.get(`manager/post/page/${page}`);
   }
   add(data) {
     return this.http.post(`manager/post/`, data);
+  }
+  delete(id) {
+    return this.http.delete(`manager/post/${id}`);
   }
 }

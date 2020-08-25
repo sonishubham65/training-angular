@@ -14,6 +14,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [ListComponent, AddComponent],
@@ -29,7 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatAutocompleteModule,
     MatSelectModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [
