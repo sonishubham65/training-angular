@@ -50,8 +50,8 @@
             <mat-label>Description</mat-label>
             <textarea matInput formControlName="description" placeholder="" rows="9"></textarea>
             <mat-error *ngIf="form.get('description').hasError('required')">"Description" is required.</mat-error>
-            <mat-error *ngIf="form.get('description').hasError('pattern')">.</mat-error>
-            <mat-error *ngIf="form.get('description').hasError('minlength')">"Description" should contain letters, number and .'-@# ,?*& only.</mat-error>
+            <mat-error *ngIf="form.get('description').hasError('pattern')">"Description" should contain letters, number and .'-@# ,?*& only.</mat-error>
+            <mat-error *ngIf="form.get('description').hasError('minlength')">"Description" length must be at least 100 characters long.</mat-error>
             <mat-error *ngIf="form.get('description').hasError('maxlength')">"Description" length must be less than or equal to 1000 characters long.</mat-error>
         </mat-form-field>
         <mat-form-field class="form-field">
