@@ -18,4 +18,7 @@ export class PostService {
   delete(id) {
     return this.http.delete(`manager/post/${id}`);
   }
+  get(id) {
+    return this.http.get(`manager/post/${id}`);
+  }
 }
