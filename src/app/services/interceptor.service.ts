@@ -39,12 +39,16 @@ export class InterceptorService implements HttpInterceptor {
             this.toastr.success('', evt['body'].message)
           }
         }
-
       }),
       catchError(err => {
         console.log(err.error)
-
-        if (err instanceof HttpErrorResponse) {
+        if (err instanceof HttpErrorResponse && err.error instanceof Blob) {
+          err.error.text().then(json => {
+            json = JSON.parse(json)
+            console.log(json);
+            this.toastr.error('', json['message']);
+          });
+        } else {
           this.toastr.error('', err.error.message);
           switch (err.status) {
             case 409:
@@ -54,8 +58,8 @@ export class InterceptorService implements HttpInterceptor {
             case 401:
             case 400: {
               if (this.router.url !== 'account/login') {
-                //this.profileService.logout();
-                //this.router.navigate(['/account/login'])
+                this.profileService.logout();
+                this.router.navigate(['/account/login'])
               }
             }
           }
