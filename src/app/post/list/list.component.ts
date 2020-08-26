@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../post.service'
 import { PageEvent } from '@angular/material/paginator';
 import { finalize } from 'rxjs/operators';
+import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -9,14 +10,20 @@ import { finalize } from 'rxjs/operators';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private postService: PostService) { }
+  constructor(
+    private postService: PostService,
+    private fb: FormBuilder,
+  ) { }
   displayedColumns: string[] = ['project_name', 'client_name', 'role', 'status', 'created_at', 'action'];
   dataSource;
   total = 0;
-  filter = {};
   pageEvent: PageEvent;
   isLoading = false;
   pageIndex;
+  form = this.fb.group({
+    _id: [''],
+    project_name: ['']
+  })
   ngOnInit(): void {
     this.list(0);
 
@@ -25,7 +32,7 @@ export class ListComponent implements OnInit {
     this.pageIndex = page;
     if (this.isLoading == false) {
       this.isLoading = true;
-      this.postService.list(page + 1, this.filter)
+      this.postService.list(page + 1, this.form.value)
         .pipe(
           finalize(() => {
             this.isLoading = false;
@@ -58,5 +65,4 @@ export class ListComponent implements OnInit {
         });
     }
   }
-
 }

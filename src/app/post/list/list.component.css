@@ -17,3 +17,6 @@
 #lists table thead td{
     font-weight: 600;
 }
+mat-icon{
+    cursor: pointer;
+}

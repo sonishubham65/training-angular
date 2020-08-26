@@ -25,9 +25,7 @@ export class EditComponent implements OnInit {
       Validators.maxLength(30),
       Validators.pattern(/^[A-Z a-z 0-9.&'$()-]+$/)
     ]],
-    technologies: this.fb.array([
-      this.fb.control('')
-    ]),
+    technologies: this.fb.array([]),
     technology: [''],
     role: ['', [
       Validators.required,

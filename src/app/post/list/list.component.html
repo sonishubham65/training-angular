@@ -4,10 +4,10 @@
             Post <mat-spinner [diameter]="14" *ngIf="isLoading"></mat-spinner>
         </span>
         <span class="filter">
-            <form>
-                <input placeholder="_id" />
-                <input placeholder="name" />
-                <button>Filter</button>
+            <form [formGroup]="form" (ngSubmit)="this.list(1)">
+                <input formControlName="_id" />
+                <input formControlName="project_name" />
+                <button type="submit">Filter</button>
             </form>
         </span>
         <span class="create">
