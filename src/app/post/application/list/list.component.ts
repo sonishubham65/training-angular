@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../post.service';
 import { PageEvent } from '@angular/material/paginator';
 import { finalize } from 'rxjs/operators';
-import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -47,6 +47,22 @@ export class ListComponent implements OnInit {
     }
   }
   download(id) {
-
+    this.isLoading = true;
+    this.postService.download(id)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((response: HttpResponse<Blob>) => {
+        let contentDisposition = response.headers.get('content-disposition');
+        let filename = contentDisposition.split(";")[1].split("=")[1];
+        var blob = new Blob([response.body], { type: 'octet/stream' });
+        var url = window.URL.createObjectURL(blob);
+        var anchor = document.createElement("a");
+        anchor.download = filename;
+        anchor.href = url;
+        anchor.click();
+      })
   }
 }

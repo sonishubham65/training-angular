@@ -32,7 +32,12 @@ export class PostService {
     return this.http.get(`manager/post/${id}`);
   }
   applications(ID, page) {
-    console.log(ID, page)
     return this.http.get(`manager/post/${ID}/application/page/${page}`);
+  }
+  download(id) {
+    return this.http.get(`manager/post/application/resume/${id}`, {
+      observe: 'response',
+      responseType: 'blob' as 'json'
+    });
   }
 }

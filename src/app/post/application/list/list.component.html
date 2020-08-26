@@ -2,12 +2,35 @@
     <div id="list_header">
         <span class="title">
             Applications 
-            <ng-container *ngIf="post">for {{post.project_name}}</ng-container>
             <mat-spinner [diameter]="14" *ngIf="isLoading"></mat-spinner>
         </span>
     </div>
+    <div *ngIf="post">
+        <table id="post_detail">
+            <tr>
+                <td>Project Name:</td>
+                <td>{{post.project_name}}</td>
+            </tr>
+            <tr>
+                <td>Client Name:</td>
+                <td>{{post.client_name}}</td>
+            </tr>
+            <tr>
+                <td>Role:</td>
+                <td>{{post.role}}</td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>{{post.status}}</td>
+            </tr>
+            <tr>
+                <td>Created at:</td>
+                <td>{{post.created_at}}</td>
+            </tr>
+        </table>
+    </div>
     
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource" class="full-width">
         <ng-container matColumnDef="_id">
             <th mat-header-cell *matHeaderCellDef> ID. </th>
             <td mat-cell *matCellDef="let element"> {{element._id}} </td>

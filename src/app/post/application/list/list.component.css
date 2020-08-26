@@ -1,7 +1,13 @@
-#lists table{
+#lists table.full-width{
     width: 100%;
     margin-top: 15px;
 }
 mat-icon{
     cursor: pointer;
+}
+#post_detail{
+    margin-top: 10px;
+}
+#post_detail td{
+    padding-right: 20px;
 }
