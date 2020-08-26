@@ -21,11 +21,11 @@ export class LoginComponent implements OnInit {
     private profileService: ProfileService,) {
   }
   form = this.fb.group({
-    email: ['', [
+    email: ['manager@nagarro.com', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|in|net)$")
     ]],
-    password: ['', [
+    password: ['Pass@123', [
       Validators.required,
       Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,30}$")
     ]]

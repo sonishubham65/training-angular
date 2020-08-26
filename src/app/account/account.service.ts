@@ -14,6 +14,7 @@ export class AccountService {
   }
   login(userData) {
     return this.http.post(`user/login`, userData, {
+      withCredentials: true
     })
   }
 }

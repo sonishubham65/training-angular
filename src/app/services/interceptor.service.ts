@@ -25,7 +25,6 @@ export class InterceptorService implements HttpInterceptor {
     if (this.profileService.token) {
       headers = headers.set('Authorization', `Bearer ${this.profileService.token}`)
     }
-    console.log("req.withCredentials", req.withCredentials)
     if (!RegExp('^(https?:)?//').test(req.url)) {
       request = req.clone({
         url: `${environment.api_url}/${req.url}`,
