@@ -1,7 +1,9 @@
 <div id="lists">
     <div id="list_header">
         <span class="title">
-            Applications <mat-spinner [diameter]="14" *ngIf="isLoading"></mat-spinner>
+            Applications 
+            <ng-container *ngIf="post">for {{post.project_name}}</ng-container>
+            <mat-spinner [diameter]="14" *ngIf="isLoading"></mat-spinner>
         </span>
     </div>
     

@@ -17,6 +17,7 @@ export class ListComponent implements OnInit {
   pageEvent: PageEvent;
   isLoading = false;
   postID;
+  post;
 
   constructor(
     private postService: PostService,
@@ -38,6 +39,7 @@ export class ListComponent implements OnInit {
         )
         .subscribe(response => {
           console.log(response)
+          this.post = response['data'].post;
           this.dataSource = response['data'].applications;
           this.total = response['data'].total;
           console.log(this.total)
