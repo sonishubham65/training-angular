@@ -31,4 +31,8 @@ export class PostService {
   get(id) {
     return this.http.get(`manager/post/${id}`);
   }
+  applications(ID, page) {
+    console.log(ID, page)
+    return this.http.get(`manager/post/${ID}/application/page/${page}`);
+  }
 }

@@ -1,0 +1,40 @@
+<div id="lists">
+    <div id="list_header">
+        <span class="title">
+            Applications <mat-spinner [diameter]="14" *ngIf="isLoading"></mat-spinner>
+        </span>
+    </div>
+    
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="_id">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name. </th>
+            <td mat-cell *matCellDef="let element" > {{element.user_id.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.user_id.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef> Created at </th>
+            <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" title="download" (click)="download(element._id)">attachment
+                </mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="total" [pageSize]="10" [pageSizeOptions]="[10]" [disabled]="isLoading" (page)="list($event.pageIndex)">
+    </mat-paginator>
+</div>

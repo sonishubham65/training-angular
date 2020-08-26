@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PostRoutingModule } from './post-routing.module';
 import { ListComponent } from './list/list.component';
+import { ListComponent as ApplicationListComponent } from './application/list/list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -18,7 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditComponent } from './edit/edit.component';
 
 @NgModule({
-  declarations: [ListComponent, AddComponent, EditComponent],
+  declarations: [ListComponent, AddComponent, EditComponent, ApplicationListComponent],
   imports: [
     CommonModule,
     PostRoutingModule,
