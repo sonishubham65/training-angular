@@ -52,7 +52,7 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" title="applications">file_copy
+                <mat-icon aria-hidden="false" aria-label="Example home icon" title="applications" [routerLink]="['/post/',element._id,'applications']">file_copy
                 </mat-icon>
                 <mat-icon aria-hidden="false" aria-label="Example home icon" title="delete" (click)="delete(element._id)">delete
                 </mat-icon>
