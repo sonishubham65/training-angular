@@ -20,3 +20,9 @@
 mat-icon{
     cursor: pointer;
 }
+#filterForm button{
+    padding: 5px;
+}
+#filterForm input{
+    padding: 5px;
+}

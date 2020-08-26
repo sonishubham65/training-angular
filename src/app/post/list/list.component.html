@@ -4,10 +4,11 @@
             Post <mat-spinner [diameter]="14" *ngIf="isLoading"></mat-spinner>
         </span>
         <span class="filter">
-            <form [formGroup]="form" (ngSubmit)="this.list(1)">
-                <input formControlName="_id" />
-                <input formControlName="project_name" />
-                <button type="submit">Filter</button>
+            <form [formGroup]="form" (ngSubmit)="this.list(0)" id="filterForm">
+                Filter By
+                <input formControlName="_id" placeholder="_id" />
+                <input formControlName="project_name" placeholder="Project name"/>
+                <button type="submit" [disabled]="isLoading">Filter</button>
             </form>
         </span>
         <span class="create">
@@ -51,7 +52,9 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="delete(element._id)">delete
+                <mat-icon aria-hidden="false" aria-label="Example home icon" title="applications">file_copy
+                </mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example home icon" title="delete" (click)="delete(element._id)">delete
                 </mat-icon>
             </td>
         </ng-container>

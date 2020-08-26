@@ -51,18 +51,21 @@ export class ListComponent implements OnInit {
 
   delete(id) {
     console.log(id, this.isLoading)
-    if (this.isLoading == false) {
-      this.isLoading = true;
+    let response = confirm("Do you want to delete it?");
+    if (response) {
+      if (this.isLoading == false) {
+        this.isLoading = true;
 
-      this.postService.delete(id).pipe(
-        finalize(() => {
-          this.isLoading = false;
-          this.list(this.pageIndex);
-        })
-      )
-        .subscribe(response => {
+        this.postService.delete(id).pipe(
+          finalize(() => {
+            this.isLoading = false;
+            this.list(this.pageIndex);
+          })
+        )
+          .subscribe(response => {
 
-        });
+          });
+      }
     }
   }
 }
