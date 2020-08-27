@@ -24,7 +24,7 @@ export class AddComponent implements OnInit {
       Validators.maxLength(30),
       Validators.pattern(/^[A-Z a-z 0-9.&'$()-]+$/)
     ]],
-    technologies: this.fb.array(['']),
+    technologies: this.fb.array([]),
     technology: [''],
     role: ['', [
       Validators.required,
