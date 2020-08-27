@@ -24,7 +24,7 @@
         </ng-container>
         <ng-container matColumnDef="project_name">
             <th mat-header-cell *matHeaderCellDef> Project name. </th>
-            <td mat-cell *matCellDef="let element" > <a [routerLink]="['/post/edit/',element._id]">{{element.project_name}}</a> </td>
+            <td mat-cell *matCellDef="let element" >{{element.project_name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="client_name">
@@ -52,9 +52,11 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" title="applications" [routerLink]="['/post/',element._id,'applications']">file_copy
+                <mat-icon aria-hidden="false" aria-label="Edit" title="applications" [routerLink]="['/post/edit/',element._id]">edit
                 </mat-icon>
-                <mat-icon aria-hidden="false" aria-label="Example home icon" title="delete" (click)="delete(element._id)">delete
+                <mat-icon aria-hidden="false" aria-label="Applications" title="applications" [routerLink]="['/post/',element._id,'applications']">file_copy
+                </mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Delete" title="delete" (click)="delete(element._id)">delete
                 </mat-icon>
             </td>
         </ng-container>
