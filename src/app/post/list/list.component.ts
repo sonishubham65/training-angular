@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostService } from '../post.service'
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { finalize } from 'rxjs/operators';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -17,9 +17,8 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['project_name', 'client_name', 'role', 'status', 'created_at', 'action'];
   dataSource;
   total = 0;
-  pageEvent: PageEvent;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   isLoading = false;
-  pageIndex;
   form = this.fb.group({
     _id: [''],
     project_name: ['']
@@ -29,7 +28,9 @@ export class ListComponent implements OnInit {
 
   }
   list(page) {
-    this.pageIndex = page;
+    if (this.paginator) {
+      this.paginator.pageIndex = page;
+    }
     if (this.isLoading == false) {
       this.isLoading = true;
       this.postService.list(page + 1, this.form.value)
@@ -59,7 +60,7 @@ export class ListComponent implements OnInit {
         this.postService.delete(id).pipe(
           finalize(() => {
             this.isLoading = false;
-            this.list(this.pageIndex);
+            this.list(this.paginator.pageIndex);
           })
         )
           .subscribe(response => {
