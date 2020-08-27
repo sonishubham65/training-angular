@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProfileService } from '../account/profile.service';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,7 +9,6 @@ export class PostService {
     private http: HttpClient
   ) { }
   list(page, params) {
-
     let queries = [];
     console.log(params)
     Object.keys(params).forEach(key => {

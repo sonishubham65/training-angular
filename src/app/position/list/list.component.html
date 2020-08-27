@@ -1,1 +1,30 @@
-<p>list works!</p>
+    <div>
+        <span class="title">
+            Positions <mat-spinner [diameter]="14" *ngIf="isLoading"></mat-spinner>
+        </span>
+        <span class="filter">
+            <form [formGroup]="form" (ngSubmit)="this.list(0)" id="filterForm">
+                Filter:
+                <input formControlName="project_name" placeholder="Project name"/>
+                <button type="submit" [disabled]="isLoading">Filter</button>
+            </form>
+        </span>
+    </div>
+    <ul *ngIf="dataSource" id="positionList">
+        <li *ngFor="let post of dataSource">
+            <div class="details">
+                <p>Project Name: {{post.project_name}}</p>
+                <p>Role: {{post.role}}</p>
+                <p>Technologies: {{post.technologies.join(", ")}}</p>
+                <p>Created at:{{post.created_at}}</p>
+            </div>
+            <div class="apply">
+                <a [routerLink]="['/positions/detail/',post._id]">Check Details</a>
+            </div>
+        </li>
+    </ul>
+    <div *ngIf="!isLoading && dataSource.length==0">
+        There are no position available for your search.
+    </div>
+    <mat-paginator [length]="total" [pageSize]="10" [pageSizeOptions]="[10]" [disabled]="isLoading" (page)="list($event.pageIndex)">
+    </mat-paginator>

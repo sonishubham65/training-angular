@@ -3,13 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { PositionRoutingModule } from './position-routing.module';
 import { ListComponent } from './list/list.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ListComponent],
   imports: [
     CommonModule,
-    PositionRoutingModule
+    PositionRoutingModule,
+    MatIconModule,
+    MatPaginatorModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    FormsModule,
   ]
 })
 export class PositionModule { }
