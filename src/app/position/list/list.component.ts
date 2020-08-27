@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PositionService } from '../position.service'
-import { PageEvent } from '@angular/material/paginator';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { finalize } from 'rxjs/operators';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -15,7 +16,6 @@ export class ListComponent implements OnInit {
     private fb: FormBuilder,
   ) { }
   total = 0;
-  pageEvent: PageEvent;
   isLoading = false;
   pageIndex;
   dataSource;
@@ -23,11 +23,17 @@ export class ListComponent implements OnInit {
     _id: [''],
     project_name: ['']
   })
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit(): void {
     this.list(0);
+    setInterval(() => {
+      console.log(this.paginator)
+    }, 1000);
   }
   list(page) {
-    this.pageIndex = page;
+    if (this.paginator) {
+      this.paginator.pageIndex = page;
+    }
     if (this.isLoading == false) {
       this.isLoading = true;
       this.positionService.list(page + 1, this.form.value)
