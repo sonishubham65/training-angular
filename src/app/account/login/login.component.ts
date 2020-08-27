@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
             this.profileService.token = res['token'];
             if (res['data'].role === 'manager') {
               this.router.navigate(['/post'])
+            } else if (res['data'].role === 'employee') {
+              this.router.navigate(['/positions'])
             }
           },
           error => {
