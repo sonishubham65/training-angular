@@ -26,9 +26,6 @@ export class ListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit(): void {
     this.list(0);
-    setInterval(() => {
-      console.log(this.paginator)
-    }, 1000);
   }
   list(page) {
     if (this.paginator) {
