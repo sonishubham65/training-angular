@@ -12,25 +12,25 @@ import { finalize } from 'rxjs/operators';
 })
 export class AddComponent implements OnInit {
   form = this.fb.group({
-    project_name: ['M30', [
+    project_name: ['', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(30),
       Validators.pattern(/^[A-Z a-z 0-9.&'$()-]+$/)
     ]],
-    client_name: ['Nagarro', [
+    client_name: ['', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(30),
       Validators.pattern(/^[A-Z a-z 0-9.&'$()-]+$/)
     ]],
-    technologies: this.fb.array(['FB']),
+    technologies: this.fb.array(['']),
     technology: [''],
-    role: ['trainee', [
+    role: ['', [
       Validators.required,
       Validators.pattern(/^(trainee|associate|senior_associate|lead|manager|director)$/)
     ]],
-    description: ['A regular expression is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for "find" or "find and replace" operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory. ', [
+    description: ['', [
       Validators.required,
       Validators.minLength(100),
       Validators.maxLength(1000),
