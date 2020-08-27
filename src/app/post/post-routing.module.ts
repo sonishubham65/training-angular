@@ -7,6 +7,9 @@ import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [{
   path: '',
+  redirectTo: 'page/1'
+}, {
+  path: 'page/:page',
   component: ListComponent
 }, {
   path: 'add',

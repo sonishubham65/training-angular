@@ -8,17 +8,8 @@ export class PostService {
   constructor(
     private http: HttpClient
   ) { }
-  list(page, params) {
-    let queries = [];
-    console.log(params)
-    Object.keys(params).forEach(key => {
-      if (params[key].trim()) {
-        queries.push((key + '=' + params[key]));
-      }
-    });
-    let queryString = queries.length ? "?" + queries.join('&') : '';
-    console.log(queryString)
-    return this.http.get(`manager/post/page/${page}${queryString}`);
+  list(page) {
+    return this.http.get(`manager/post/page/${page}`);
   }
   add(data) {
     return this.http.post(`manager/post/`, data);
