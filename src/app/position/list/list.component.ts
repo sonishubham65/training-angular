@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PositionService } from '../position.service'
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { finalize } from 'rxjs/operators';
 import { FormBuilder } from '@angular/forms';
 
