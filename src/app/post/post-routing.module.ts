@@ -19,6 +19,9 @@ const routes: Routes = [{
   component: EditComponent
 }, {
   path: ':ID/applications',
+  redirectTo: ':ID/applications/1'
+}, {
+  path: ':ID/applications/:page',
   component: ApplicationListComponent
 }];
 

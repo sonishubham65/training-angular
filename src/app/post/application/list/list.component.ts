@@ -1,9 +1,9 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostService } from '../../post.service';
-import { PageEvent } from '@angular/material/paginator';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { finalize } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-list',
@@ -19,30 +19,42 @@ export class ListComponent implements OnInit {
   postID;
   post;
 
+  pageIndex;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(
     private postService: PostService,
+    private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
     this.postID = this.activatedRoute.snapshot.params.ID;
+    this.activatedRoute.params.subscribe(data => {
+      this.pageIndex = data.page;
+      this.list();
+    });
+
   }
   ngOnInit(): void {
-    this.list(0);
+
   }
-  list(page) {
+  ngAfterViewInit(): void {
+    this.paginator.initialized.subscribe(() => {
+      this.paginator.pageIndex = this.pageIndex - 1;
+    })
+  }
+  list() {
     if (this.isLoading == false) {
       this.isLoading = true;
-      this.postService.applications(this.postID, page + 1)
+      this.postService.applications(this.postID, this.pageIndex)
         .pipe(
           finalize(() => {
             this.isLoading = false;
           })
         )
         .subscribe(response => {
-          console.log(response)
           this.post = response['data'].post;
           this.dataSource = response['data'].applications;
           this.total = response['data'].total;
-          console.log(this.total)
         });
     }
   }
@@ -64,5 +76,8 @@ export class ListComponent implements OnInit {
         anchor.href = url;
         anchor.click();
       })
+  }
+  changePage() {
+    this.router.navigate([`post/${this.postID}/applications/`, (this.paginator.pageIndex + 1)])
   }
 }
