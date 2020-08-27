@@ -18,4 +18,7 @@ export class PositionService {
     let queryString = queries.length ? "?" + queries.join('&') : '';
     return this.http.get(`position/page/${page}${queryString}`);
   }
+  details(_id) {
+    return this.http.get(`position/${_id}`);
+  }
 }

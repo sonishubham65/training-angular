@@ -8,9 +8,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
-  declarations: [ListComponent],
+  declarations: [ListComponent, DetailComponent],
   imports: [
     CommonModule,
     PositionRoutingModule,
