@@ -1,0 +1,29 @@
+<div *ngIf="isLoading else nopost">
+    Loading..
+</div>
+<div *ngIf="post">
+    <div class="details">
+        <p>Project Name: {{post.project_name}}</p>
+        <p>Client Name: {{post.client_name}}</p>
+        <p>Role: {{post.role}}</p>
+        <p>Description: {{post.description}}</p>
+        <p>Status: {{post.status}}</p>
+        <p>Technologies: {{post.technologies.join(", ")}}</p>
+        <p>Contact person: {{post.user.name}} - {{post.user.email}}</p>
+        <p>Created at: {{post.created_at}}</p>
+        <p *ngIf="profileService.user.role=='employee'">
+            <ng-container *ngIf="!post.application">
+                <button (click)="apply()">Apply</button>
+            </ng-container>
+            <ng-container *ngIf="post.application">
+                Applied..
+            </ng-container>
+            
+        </p>
+    </div>
+</div>
+<ng-template #nopost>
+    <ng-container *ngIf="!post">
+        Post is no longer activated.
+    </ng-container>
+</ng-template>

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private profileService: ProfileService,) {
   }
   form = this.fb.group({
-    email: ['employee@nagarro.com', [
+    email: ['manager@nagarro.com', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|in|net)$")
     ]],
@@ -50,7 +50,11 @@ export class LoginComponent implements OnInit {
             this.form.reset();
             this.profileService.user = res['data'];
             this.profileService.token = res['token'];
-            //this.router.navigate([''])
+            if (res['data'].role === 'manager') {
+              this.router.navigate(['/post'])
+            } else if (res['data'].role === 'employee') {
+              this.router.navigate(['/positions'])
+            }
           },
           error => {
             console.log(error)

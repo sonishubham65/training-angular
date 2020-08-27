@@ -1,0 +1,61 @@
+<div id="lists">
+    <div id="list_header">
+        <span class="title">
+            Post <mat-spinner [diameter]="14" *ngIf="isLoading"></mat-spinner>
+        </span>
+        <span class="create">
+            <button [routerLink]="['/post/add']">Create</button>
+        </span>
+    </div>
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="_id">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="project_name">
+            <th mat-header-cell *matHeaderCellDef> Project name. </th>
+            <td mat-cell *matCellDef="let element" >{{element.project_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="client_name">
+            <th mat-header-cell *matHeaderCellDef> Client Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.client_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef> Role </th>
+            <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+        <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef> Created at </th>
+            <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_at">
+            <th mat-header-cell *matHeaderCellDef> Updated at </th>
+            <td mat-cell *matCellDef="let element"> {{element.updated_at}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon aria-hidden="false" aria-label="Edit" title="applications" [routerLink]="['/post/edit/',element._id]">edit
+                </mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Applications" title="applications" [routerLink]="['/post/',element._id,'applications']">file_copy
+                </mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Delete" title="delete" (click)="delete(element._id)">delete
+                </mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    <mat-paginator [length]="total" [pageSize]="10" [pageSizeOptions]="[10]" [disabled]="isLoading" (page)="changePage()">
+    </mat-paginator>
+    
+</div>
