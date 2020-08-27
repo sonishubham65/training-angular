@@ -11,7 +11,15 @@
         <p>Technologies: {{post.technologies.join(", ")}}</p>
         <p>Contact person: {{post.user.name}} - {{post.user.email}}</p>
         <p>Created at: {{post.created_at}}</p>
-        
+        <p *ngIf="profileService.user.role=='employee'">
+            <ng-container *ngIf="!post.application">
+                <button (click)="apply()">Apply</button>
+            </ng-container>
+            <ng-container *ngIf="post.application">
+                Applied..
+            </ng-container>
+            
+        </p>
     </div>
 </div>
 <ng-template #nopost>

@@ -21,4 +21,7 @@ export class PositionService {
   details(_id) {
     return this.http.get(`position/${_id}`);
   }
+  apply(_id) {
+    return this.http.post(`position/apply/${_id}`, {});
+  }
 }

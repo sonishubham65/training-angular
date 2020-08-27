@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PositionService } from '../position.service'
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
+import { ProfileService } from 'src/app/account/profile.service';
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -10,16 +12,20 @@ import { finalize } from 'rxjs/operators';
 export class DetailComponent implements OnInit {
 
   post;
+  postid;
   isLoading;
   constructor(
     private positionService: PositionService,
-    private activatedRoute: ActivatedRoute
-  ) { }
+    private activatedRoute: ActivatedRoute,
+    private profileService: ProfileService
+  ) {
+    this.postid = this.activatedRoute.snapshot.params.ID;
+  }
 
   ngOnInit(): void {
-    let _id = this.activatedRoute.snapshot.params.ID;
+
     this.isLoading = true;
-    this.positionService.details(_id)
+    this.positionService.details(this.postid)
       .pipe(
         finalize(() => {
           this.isLoading = false;
@@ -30,5 +36,17 @@ export class DetailComponent implements OnInit {
         this.post = response['data']
       });
   }
-
+  apply() {
+    this.isLoading = true;
+    this.positionService.apply(this.postid)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe(response => {
+        console.log(response);
+        this.post.application = true;
+      });
+  }
 }
