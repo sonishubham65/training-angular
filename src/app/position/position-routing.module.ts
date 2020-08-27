@@ -5,6 +5,10 @@ import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [{
   path: '',
+  redirectTo: '1',
+  pathMatch: 'full'
+}, {
+  path: ':page',
   component: ListComponent
 }, {
   path: 'detail/:ID',

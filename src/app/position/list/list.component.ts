@@ -1,51 +1,56 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { PositionService } from '../position.service'
 import { MatPaginator } from '@angular/material/paginator';
 import { finalize } from 'rxjs/operators';
-import { FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewInit {
+  total = 0;
+  isLoading = false;
+  dataSource;
+  pageIndex;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private positionService: PositionService,
-    private fb: FormBuilder,
-  ) { }
-  total = 0;
-  isLoading = false;
-  pageIndex;
-  dataSource;
-  form = this.fb.group({
-    _id: [''],
-    project_name: ['']
-  })
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  ngOnInit(): void {
-    this.list(0);
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.activatedRoute.params.subscribe(data => {
+      this.pageIndex = data.page;
+      this.list();
+    });
   }
-  list(page) {
-    if (this.paginator) {
-      this.paginator.pageIndex = page;
-    }
+  ngOnInit(): void {
+
+  }
+  ngAfterViewInit(): void {
+    this.paginator.initialized.subscribe(() => {
+      this.paginator.pageIndex = this.pageIndex - 1;
+    })
+  }
+
+  list() {
     if (this.isLoading == false) {
       this.isLoading = true;
-      this.positionService.list(page + 1, this.form.value)
+      this.positionService.list(this.pageIndex)
         .pipe(
           finalize(() => {
             this.isLoading = false;
           })
         )
         .subscribe(response => {
-          console.log(response)
           this.dataSource = response['data'].posts;
           this.total = response['data'].total;
-          console.log(this.total)
         });
     }
-
+  }
+  changePage() {
+    this.router.navigate(['positions/', (this.paginator.pageIndex + 1)])
   }
 }
