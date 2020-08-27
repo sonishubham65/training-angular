@@ -23,6 +23,9 @@ export class PostService {
   add(data) {
     return this.http.post(`manager/post/`, data);
   }
+  edit(id, data) {
+    return this.http.patch(`manager/post/${id}`, data);
+  }
   delete(id) {
     return this.http.delete(`manager/post/${id}`);
   }

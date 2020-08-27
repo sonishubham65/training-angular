@@ -52,11 +52,11 @@ export class EditComponent implements OnInit {
 
   }
   separatorKeysCodes: number[] = [ENTER, COMMA];
-
+  postID;
   ngOnInit(): void {
-    let ID = this.activatedRoute.snapshot.params.ID;
+    this.postID = this.activatedRoute.snapshot.params.ID;
     this.isLoading = true;
-    this.postService.get(ID)
+    this.postService.get(this.postID)
       .pipe(
         finalize(() => {
           this.isLoading = false;
@@ -65,6 +65,12 @@ export class EditComponent implements OnInit {
       .subscribe(response => {
         let data = response['data'];
         this.form.patchValue(data);
+        data.technologies.forEach(element => {
+          this.form.get('technologies').value.push(element);
+        });
+        // this.form.forEach((item) => {
+        //   this.control.push(this.patchValues(item));
+        // })
       })
   }
 
@@ -105,7 +111,7 @@ export class EditComponent implements OnInit {
     if (this.form.status === 'VALID') {
       this.isLoading = true;
       delete this.form.value.technology
-      this.postService.add(this.form.value)
+      this.postService.edit(this.postID, this.form.value)
 
         .pipe(
           finalize(() => {
@@ -114,7 +120,7 @@ export class EditComponent implements OnInit {
         )
 
         .subscribe(data => {
-          this.router.navigate(['/post'])
+          //this.router.navigate(['/post'])
         })
     }
   }
