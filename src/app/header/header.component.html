@@ -11,7 +11,7 @@
                 <li><a routerLinkActive="active" [routerLink]="['./account/register']">Register</a></li>
             </ng-container>
             <ng-container *ngIf="profileService.user">
-                <li><a>Positions</a></li>
+                <li><a [routerLink]="['/positions/']">Positions</a></li>
                 <ng-container *ngIf="profileService.user.role=='employee'">
                     <li><a>Resume</a></li>
                 </ng-container>
