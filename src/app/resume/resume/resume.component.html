@@ -1,0 +1,10 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+<input type="file" (change)="onFileChange($event)" />
+<button type="submit" [disabled]="form.invalid || form.prestine">Submit</button>
+</form>
+<br/>
+<hr/>
+<br/>
+<div *ngIf="profileService.user.resume || isUploaded" (click)="download()">
+    <button>Download Resume</button>
+</div>
