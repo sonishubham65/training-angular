@@ -1,10 +1,16 @@
-<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
-<input type="file" (change)="onFileChange($event)" />
-<button type="submit" [disabled]="form.invalid">Submit</button>
-</form>
-<br/>
-<hr/>
-<br/>
-<div *ngIf="profileService.user.resume" (click)="download()">
-    <button>Download Resume</button>
+<h3>Updated resume:</h3>
+    
+<div id="resume_upload_section">
+    <div class="formSection">
+        <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+        <input type="file" (change)="onFileChange($event)" />
+        <button type="submit" [disabled]="form.invalid">Submit</button>
+        </form>
+    </div>
+    <div class="downloadSection">
+        <div *ngIf="profileService.user.resume" (click)="download()">
+            <mat-icon>cloud_download</mat-icon>
+        </div>
+    </div>
 </div>
+

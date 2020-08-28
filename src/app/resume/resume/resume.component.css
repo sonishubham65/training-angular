@@ -1,0 +1,7 @@
+#resume_upload_section{
+    display: flex;
+    justify-content: space-between;
+}
+#resume_upload_section .formSection button{
+    padding: 3px 8px;
+}
