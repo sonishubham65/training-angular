@@ -14,7 +14,7 @@ export class ResumeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private resumeService: ResumeService,
-    private profileService: ProfileService
+    public profileService: ProfileService
   ) { }
   isUploaded;
   isLoading;

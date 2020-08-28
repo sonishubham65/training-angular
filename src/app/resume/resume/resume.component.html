@@ -1,6 +1,6 @@
 <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
 <input type="file" (change)="onFileChange($event)" />
-<button type="submit" [disabled]="form.invalid || form.prestine">Submit</button>
+<button type="submit" [disabled]="form.invalid">Submit</button>
 </form>
 <br/>
 <hr/>
