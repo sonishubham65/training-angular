@@ -16,7 +16,6 @@ export class ResumeComponent implements OnInit {
     private resumeService: ResumeService,
     public profileService: ProfileService
   ) { }
-  isUploaded;
   isLoading;
   form = this.fb.group({
     resume: [null, Validators.required]
@@ -34,7 +33,7 @@ export class ResumeComponent implements OnInit {
           this.isLoading = false;
         })
       ).subscribe(data => {
-        this.isUploaded = true;
+        this.profileService.getProfile().subscribe()
       });
   }
 

@@ -5,6 +5,6 @@
 <br/>
 <hr/>
 <br/>
-<div *ngIf="profileService.user.resume || isUploaded" (click)="download()">
+<div *ngIf="profileService.user.resume" (click)="download()">
     <button>Download Resume</button>
 </div>
