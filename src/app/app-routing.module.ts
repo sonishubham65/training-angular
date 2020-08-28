@@ -15,6 +15,9 @@ const routes: Routes = [{
 }, {
   path: 'positions',
   loadChildren: () => import('./position/position.module').then(module => module.PositionModule)
+}, {
+  path: 'resume',
+  loadChildren: () => import('./resume/resume.module').then(module => module.ResumeModule)
 }];
 
 @NgModule({
