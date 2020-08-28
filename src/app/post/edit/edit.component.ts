@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
     technology: [''],
     role: ['', [
       Validators.required,
-      Validators.pattern(/^(trainee|associate|senior_associate|lead|manager|director)$/)
+      Validators.pattern(/^(Trainee|Associate|Senior associate|Lead|Manager|Director)$/)
     ]],
     description: ['', [
       Validators.required,

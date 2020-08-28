@@ -11,12 +11,12 @@
                 <li><a routerLinkActive="active" [routerLink]="['./account/register']">Register</a></li>
             </ng-container>
             <ng-container *ngIf="profileService.user">
-                <li><a [routerLink]="['/positions/']">Positions</a></li>
+                <li><a routerLinkActive="active" [routerLink]="['/positions/']">Positions</a></li>
                 <ng-container *ngIf="profileService.user.role=='employee'">
-                    <li><a>Resume</a></li>
+                    <li><a routerLinkActive="active" [routerLink]="['./resume']">Resume</a></li>
                 </ng-container>
                 <ng-container *ngIf="profileService.user.role=='manager'">
-                    <li><a [routerLink]="['./post']">Posts</a></li>
+                    <li><a routerLinkActive="active" [routerLink]="['./post']">Posts</a></li>
                 </ng-container>
                 <li><a [routerLink]="['#']" (click)="logout()">Logout</a></li>
             </ng-container>

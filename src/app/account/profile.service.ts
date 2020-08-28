@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,9 @@ export class ProfileService {
   private userData;
   private tokenData;
 
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ) {
     if (localStorage.getItem('profile')) {
       this.userData = JSON.parse(localStorage.getItem('profile'));
     }
@@ -36,5 +40,11 @@ export class ProfileService {
     this.user = undefined;
     localStorage.removeItem('token');
     localStorage.removeItem('profile');
+  }
+  getProfile() {
+    return this.http.get('user/profile')
+      .pipe(tap((res) => {
+        this.user = res['data'];
+      }));
   }
 }

@@ -38,26 +38,29 @@ export class LoginComponent implements OnInit {
     if (this.form.status === 'VALID') {
       this.isLoading = true;
       this.accountService.login(this.form.value)
-
         .pipe(
           finalize(() => {
             this.isLoading = false;
           })
         )
-
         .subscribe(
           res => {
-            this.form.reset();
-            this.profileService.user = res['data'];
             this.profileService.token = res['token'];
-            if (res['data'].role === 'manager') {
-              this.router.navigate(['/post'])
-            } else if (res['data'].role === 'employee') {
-              this.router.navigate(['/positions'])
-            }
-          },
-          error => {
-            console.log(error)
+
+            this.profileService.getProfile()
+              .pipe(
+                finalize(() => {
+                  this.isLoading = false;
+                })
+              )
+              .subscribe(res => {
+                this.form.reset();
+                if (res['data'].role === 'manager') {
+                  this.router.navigate(['/post'])
+                } else if (res['data'].role === 'employee') {
+                  this.router.navigate(['/positions'])
+                }
+              });
           }
         )
     }
