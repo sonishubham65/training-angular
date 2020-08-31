@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { TimerComponent } from './timer/timer.component';
 import { GuardService } from './services/guard.service';
 import { AuthService } from './services/auth.service';
 
@@ -24,6 +25,9 @@ const routes: Routes = [{
   loadChildren: () => import('./resume/resume.module').then(module => module.ResumeModule),
   canActivate: [GuardService, AuthService],
   data: { roles: ['employee'] }
+}, {
+  path: 'timer',
+  component: TimerComponent
 }];
 
 @NgModule({
