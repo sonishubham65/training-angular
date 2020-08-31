@@ -34,8 +34,13 @@ export class InterceptorService implements HttpInterceptor {
     return next.handle(request).pipe(
       tap(evt => {
         if (evt instanceof HttpResponse) {
-          if (evt['body'].message) {
-            this.toastr.success('', evt['body'].message)
+          if (evt['body']) {
+            if (evt['body'].message) {
+              this.toastr.success('', evt['body'].message)
+            }
+          } else {
+            this.toastr.warning('', "No data found..")
+            throw false;
           }
         }
       }),
@@ -46,7 +51,10 @@ export class InterceptorService implements HttpInterceptor {
             this.toastr.error('', json['message']);
           });
         } else {
-          this.toastr.error('', err.error.message);
+          console.log(err)
+          if (err.error) {
+            this.toastr.error('', err.error.message);
+          }
           switch (err.status) {
             case 409:
             case 422: {
@@ -58,7 +66,7 @@ export class InterceptorService implements HttpInterceptor {
                 this.profileService.logout();
                 this.router.navigate(['/account/login'])
               }
-            }
+            } break;
           }
         }
         return of(err);

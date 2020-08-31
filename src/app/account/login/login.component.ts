@@ -20,11 +20,11 @@ export class LoginComponent implements OnInit {
     private socketService: SocketService) {
   }
   form = this.fb.group({
-    email: ['manager@nagarro.com', [
+    email: ['', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|in|net)$")
     ]],
-    password: ['Pass@123', [
+    password: ['', [
       Validators.required,
       Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,30}$")
     ]]
