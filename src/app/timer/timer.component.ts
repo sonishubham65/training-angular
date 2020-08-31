@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TimerService } from '../services/timer.service';
+import { SocketService } from '../services/socket.service';
 
 @Component({
   selector: 'app-timer',
@@ -9,16 +9,16 @@ import { TimerService } from '../services/timer.service';
 export class TimerComponent implements OnInit {
 
   constructor(
-    private timerService: TimerService
+    private socketService: SocketService
   ) { }
 
   timer;
   color;
   ngOnInit(): void {
-    this.timerService.timer().subscribe(payload => {
+    this.socketService.timer().subscribe(payload => {
       this.timer = payload
     })
-    this.timerService.color().subscribe(payload => {
+    this.socketService.color().subscribe(payload => {
       this.color = payload
     })
   }

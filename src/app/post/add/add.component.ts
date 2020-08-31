@@ -63,7 +63,6 @@ export class AddComponent implements OnInit {
   @ViewChild('chipList') chipList;
   add(blur?) {
     let value = this.form.get('technology').value;
-    console.log(value)
     value = (value || '').trim();
     if (blur && this.form.get('technologies').value.length == 0) {
       this.chipList.errorState = true;
@@ -93,7 +92,6 @@ export class AddComponent implements OnInit {
     }
   }
   onSubmit() {
-    console.log(this.form);
     if (this.form.status === 'VALID') {
       this.isLoading = true;
       delete this.form.value.technology

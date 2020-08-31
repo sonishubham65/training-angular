@@ -37,12 +37,12 @@
         </ng-container>
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name. </th>
-            <td mat-cell *matCellDef="let element" > {{element.user_id.name}} </td>
+            <td mat-cell *matCellDef="let element" > {{element.user.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.user_id.email}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
         </ng-container>
 
         <ng-container matColumnDef="created_at">
@@ -52,6 +52,8 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" title="view" [routerLink]="['/post/application/',element._id]">visibility
+                </mat-icon>
                 <mat-icon aria-hidden="false" aria-label="Example home icon" title="download" (click)="download(element._id)">attachment
                 </mat-icon>
             </td>

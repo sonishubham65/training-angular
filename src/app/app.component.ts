@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TimerService } from './services/timer.service'
+import { SocketService } from './services/socket.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +9,7 @@ import { TimerService } from './services/timer.service'
 export class AppComponent {
   title = 'app';
   constructor(
-    private timerService: TimerService
+    private socketService: SocketService
   ) {
 
   }

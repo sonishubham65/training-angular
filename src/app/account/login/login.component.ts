@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../../account/account.service';
 import { ProfileService } from '../../account/profile.service';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-
+import { SocketService } from '../../services/socket.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,17 +14,17 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private toastr: ToastrService,
     private router: Router,
     private accountService: AccountService,
-    private profileService: ProfileService,) {
+    private profileService: ProfileService,
+    private socketService: SocketService) {
   }
   form = this.fb.group({
-    email: ['manager@nagarro.com', [
+    email: ['', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|in|net)$")
     ]],
-    password: ['Pass@123', [
+    password: ['', [
       Validators.required,
       Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,30}$")
     ]]
@@ -60,6 +59,8 @@ export class LoginComponent implements OnInit {
                 } else if (res['data'].role === 'employee') {
                   this.router.navigate(['/positions'])
                 }
+                this.socketService.disconnect();
+                this.socketService.connect();
               });
           }
         )

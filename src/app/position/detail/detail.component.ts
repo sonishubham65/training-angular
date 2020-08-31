@@ -32,7 +32,6 @@ export class DetailComponent implements OnInit {
         })
       )
       .subscribe(response => {
-        console.log(response)
         this.post = response['data']
       });
   }

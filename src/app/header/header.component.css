@@ -8,6 +8,7 @@ header{
 }
 header #header-logo {
     display: flex;
+    cursor: pointer;
 }
 header #header-logo img{
     max-height: 25px;
@@ -28,7 +29,7 @@ header #header-menu #menu li a{
     text-decoration: none;
 }
 header #header-menu #menu li a.active{
-    color: #000;
+    color: #f00;
     font-weight: 500;
 }
 

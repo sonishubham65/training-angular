@@ -17,9 +17,10 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditComponent } from './edit/edit.component';
+import { DetailComponent } from './application/detail/detail.component';
 
 @NgModule({
-  declarations: [ListComponent, AddComponent, EditComponent, ApplicationListComponent],
+  declarations: [ListComponent, AddComponent, EditComponent, ApplicationListComponent, DetailComponent],
   imports: [
     CommonModule,
     PostRoutingModule,

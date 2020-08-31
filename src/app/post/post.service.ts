@@ -26,6 +26,9 @@ export class PostService {
   applications(ID, page) {
     return this.http.get(`manager/post/${ID}/application/page/${page}`);
   }
+  application_detail(ID) {
+    return this.http.get(`manager/post/application/details/${ID}`);
+  }
   download(id) {
     return this.http.get(`manager/post/application/resume/${id}`, {
       observe: 'response',

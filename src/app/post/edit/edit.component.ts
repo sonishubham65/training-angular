@@ -68,9 +68,6 @@ export class EditComponent implements OnInit {
         data.technologies.forEach(element => {
           this.form.get('technologies').value.push(element);
         });
-        // this.form.forEach((item) => {
-        //   this.control.push(this.patchValues(item));
-        // })
       })
   }
 
