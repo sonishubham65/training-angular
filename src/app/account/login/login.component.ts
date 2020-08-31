@@ -5,7 +5,7 @@ import { ProfileService } from '../../account/profile.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-
+import { SocketService } from '../../services/socket.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private accountService: AccountService,
-    private profileService: ProfileService,) {
+    private profileService: ProfileService,
+    private socketService: SocketService) {
   }
   form = this.fb.group({
     email: ['manager@nagarro.com', [
@@ -60,6 +61,8 @@ export class LoginComponent implements OnInit {
                 } else if (res['data'].role === 'employee') {
                   this.router.navigate(['/positions'])
                 }
+                this.socketService.disconnect();
+                this.socketService.connect();
               });
           }
         )

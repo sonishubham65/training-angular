@@ -15,14 +15,6 @@ export class AuthorizeService {
     private http: HttpClient
   ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(req.url)
-    // return next.handle(req).pipe(
-    //   catchError(err => {
-    //     console.log(err);
-    //     console.log(err)
-    //     return Observable.throw(err.error)
-    //   })
-    // )
     if (req.url !== 'user/authorize') {
       const helper = new JwtHelperService();
       if (this.profileService.token) {
