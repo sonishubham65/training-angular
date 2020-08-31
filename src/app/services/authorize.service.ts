@@ -21,7 +21,6 @@ export class AuthorizeService {
         const isExpired = helper.isTokenExpired(this.profileService.token);
         if (isExpired) {
           return this.http.get('user/authorize', { withCredentials: true }).pipe(mergeMap(data => {
-            console.log(data)
             this.profileService.token = data['token'];
             return next.handle(req);
           }))

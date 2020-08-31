@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../../account/account.service';
 import { ProfileService } from '../../account/profile.service';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { SocketService } from '../../services/socket.service'
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private toastr: ToastrService,
     private router: Router,
     private accountService: AccountService,
     private profileService: ProfileService,

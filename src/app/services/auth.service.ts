@@ -13,7 +13,6 @@ export class AuthService {
   ) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let roles = route.data["roles"];
-    console.log(roles);
     if (roles.indexOf(this.profileService.user.role) >= 0) {
       return true;
     }

@@ -21,7 +21,6 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.ID = this.activatedRoute.snapshot.params.ID;
-    console.log(this.ID)
     this.postService.application_detail(this.ID)
       .pipe(
         finalize(() => {

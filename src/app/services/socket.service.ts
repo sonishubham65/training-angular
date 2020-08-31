@@ -3,8 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import io from 'socket.io-client';
 import { ProfileService } from '../account/profile.service';
-import { HttpClient } from '@angular/common/http';
-
+import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,8 +11,8 @@ export class SocketService {
 
   socket;
   constructor(
-    private http: HttpClient,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private toastr: ToastrService,
   ) {
     this.connect();
   }
@@ -41,6 +40,11 @@ export class SocketService {
     });
     this.socket.on('disconnect', function () {
       console.log("disconnected..")
+    });
+
+    this.socket.on('application', (data) => {
+      console.log(data)
+      this.toastr.info(`<p><a class="btn btn-link" href="/post/application/${data.id}">click here</a> to view.</p>`, 'New Application', { enableHtml: true, closeButton: true, tapToDismiss: false });
     });
   }
 }

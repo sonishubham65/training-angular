@@ -20,7 +20,6 @@ export class InterceptorService implements HttpInterceptor {
     Observable<HttpEvent<any>> {
 
     let request = req;
-    console.log(req.headers)
     let headers = req.headers;
     if (this.profileService.token) {
       headers = headers.set('Authorization', `Bearer ${this.profileService.token}`)
@@ -41,11 +40,9 @@ export class InterceptorService implements HttpInterceptor {
         }
       }),
       catchError(err => {
-        console.log(err.error)
         if (err instanceof HttpErrorResponse && err.error instanceof Blob) {
           err.error.text().then(json => {
             json = JSON.parse(json)
-            console.log(json);
             this.toastr.error('', json['message']);
           });
         } else {
