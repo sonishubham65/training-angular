@@ -9,13 +9,15 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { AuthorizeService } from './services/authorize.service'
+import { AuthorizeService } from './services/authorize.service';
+import { TimerComponent } from './timer/timer.component'
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,
