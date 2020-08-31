@@ -8,6 +8,7 @@ header{
 }
 header #header-logo {
     display: flex;
+    cursor: pointer;
 }
 header #header-logo img{
     max-height: 25px;
