@@ -4,6 +4,7 @@ import { ListComponent } from './list/list.component';
 import { ListComponent as ApplicationListComponent } from './application/list/list.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { DetailComponent } from './application/detail/detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,9 @@ const routes: Routes = [{
 }, {
   path: ':ID/applications/:page',
   component: ApplicationListComponent
+}, {
+  path: 'application/:ID',
+  component: DetailComponent
 }];
 
 @NgModule({
