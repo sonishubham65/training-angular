@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import io from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TimerService {
+export class SocketService {
+
   socket;
   constructor() {
-    this.socket = io('http://localhost:3000');
+    this.socket = io(environment.api_url);
     this.socket.on('connect', function () {
       console.log("connected..");
     });
