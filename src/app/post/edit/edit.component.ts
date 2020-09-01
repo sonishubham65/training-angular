@@ -39,7 +39,7 @@ export class EditComponent implements OnInit {
     ]],
     status: ['', [
       Validators.required,
-      Validators.pattern(/^(open|closed)$/)
+      Validators.pattern(/^(true|false)$/)
     ]]
   })
 

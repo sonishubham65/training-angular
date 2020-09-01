@@ -36,9 +36,9 @@ export class AddComponent implements OnInit {
       Validators.maxLength(1000),
       Validators.pattern(/^[A-Z a-z 0-9.'@# ,?"*&\r\t\n-]+$/)
     ]],
-    status: ['open', [
+    status: [true, [
       Validators.required,
-      Validators.pattern(/^(open|closed)$/)
+      Validators.pattern(/^(true|false)$/)
     ]]
   })
 

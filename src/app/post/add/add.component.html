@@ -57,7 +57,7 @@
         <mat-form-field class="form-field">
             <mat-label>Status</mat-label>
             <mat-select formControlName="status">
-                <mat-option *ngFor="let status of [['open','Open'],['closed','Closed']]" [value]="status[0]">
+                <mat-option *ngFor="let status of [[true,'Open'],[false,'Closed']]" [value]="status[0]">
                   {{status[1]}}
                 </mat-option>
               </mat-select>

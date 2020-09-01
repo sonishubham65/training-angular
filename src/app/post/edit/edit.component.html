@@ -57,13 +57,12 @@
         <mat-form-field class="form-field">
             <mat-label>Status</mat-label>
             <mat-select formControlName="status">
-                <mat-option *ngFor="let status of [['open','Open'],['closed','Closed']]" [value]="status[0]">
+                <mat-option *ngFor="let status of [[true,'Open'],[false,'Closed']]" [value]="status[0]">
                   {{status[1]}}
                 </mat-option>
               </mat-select>
             <mat-error *ngIf="form.get('status').hasError('required')">"Status" is required.</mat-error>
-            <mat-error *ngIf="form.get('status').hasError('pattern')">"Status" must be one of
-                ['Open','Closed'].</mat-error>
+            <mat-error *ngIf="form.get('status').hasError('pattern')">"Status" must be one of open or closed.</mat-error>
         </mat-form-field>
         <button mat-raised-button color="primary" [disabled]="(form.status=='INVALID' || isLoading)" type="submit">
             Update
